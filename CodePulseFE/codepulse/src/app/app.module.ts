@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './Core/Components/navbar/navbar.component';
 import { CategoryListComponent } from './Features/Category/category-list/category-list.component';
 import { AddCategoryComponent } from './Features/Category/add-category/add-category.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EditCategoryComponent } from './Features/Category/edit-category/edit-category.component';
+import { BlogpostsListComponent } from './Features/blog-post/blogposts-list/blogposts-list.component';
+import { AddBlogpostComponent } from './Features/blog-post/add-blogpost/add-blogpost.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,15 @@ import { EditCategoryComponent } from './Features/Category/edit-category/edit-ca
     NavbarComponent,
     CategoryListComponent,
     AddCategoryComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    BlogpostsListComponent,
+    AddBlogpostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],
