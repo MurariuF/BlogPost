@@ -1,7 +1,6 @@
 ﻿using CodePulse.API.Models.Domain;
 using CodePulse.API.Models.DTO;
 using CodePulse.API.Repositories.Interface;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodePulse.API.Controllers
@@ -39,6 +38,23 @@ namespace CodePulse.API.Controllers
             var response = new BlogPostDto(blogPost.Id, blogPost.Title, blogPost.ShortDescription, blogPost.UrlHandle,
                 blogPost.Content, blogPost.FeaturedImageUrl, blogPost.PublishedDate, blogPost.Author,
                 blogPost.IsVisible);
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllBlogposts()
+        {
+            var blogposts = await repository.GetAllAsync();
+
+            var response = new List<BlogPostDto>();
+
+            foreach (var blogPost in blogposts)
+            {
+                response.Add(new BlogPostDto(blogPost.Id, blogPost.Title, blogPost.ShortDescription, blogPost.UrlHandle,
+                    blogPost.Content, blogPost.FeaturedImageUrl, blogPost.PublishedDate, blogPost.Author,
+                    blogPost.IsVisible));
+            }
 
             return Ok(response);
         }
