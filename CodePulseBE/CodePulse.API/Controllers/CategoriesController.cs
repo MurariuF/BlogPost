@@ -29,12 +29,7 @@ namespace CodePulse.API.Controllers
 
             await repository.CreateAsync(category);
 
-            var response = new CategoryDto
-            {
-                Id = category.Id,
-                Name = category.Name,
-                UrlHandle = category.UrlHandle
-            };
+            var response = new CategoryDto(category.Id, category.Name, category.UrlHandle);
 
             return Ok(response);
         }
@@ -50,12 +45,7 @@ namespace CodePulse.API.Controllers
 
             foreach (var category in categories)
             {
-                response.Add(new CategoryDto
-                {
-                    Id=category.Id,
-                    Name = category.Name,
-                    UrlHandle = category.UrlHandle
-                });
+                response.Add(new CategoryDto(category.Id, category.Name, category.UrlHandle));
             }
 
             return Ok(response);
@@ -72,12 +62,7 @@ namespace CodePulse.API.Controllers
                 return NotFound();
             }
 
-            var response = new CategoryDto
-            {
-                Id = category.Id,
-                Name = category.Name,
-                UrlHandle = category.UrlHandle
-            };
+            var response = new CategoryDto(category.Id, category.Name, category.UrlHandle);
 
             return Ok(response);
         }
@@ -102,12 +87,7 @@ namespace CodePulse.API.Controllers
             }
 
             //convert domain model to dto
-            var response = new CategoryDto
-            {
-                Id = category.Id,
-                Name = category.Name,
-                UrlHandle = category.UrlHandle
-            };
+            var response = new CategoryDto(category.Id, category.Name, category.UrlHandle);
 
             return Ok(response); 
         }
@@ -123,12 +103,8 @@ namespace CodePulse.API.Controllers
                 return NotFound();
             }
 
-            var response = new CategoryDto
-            {
-                Id = category.Id,
-                Name = category.Name,
-                UrlHandle = category.UrlHandle
-            };
+            var response = new CategoryDto(category.Id, category.Name, category.UrlHandle);
+
             return Ok(response);
         }
     }

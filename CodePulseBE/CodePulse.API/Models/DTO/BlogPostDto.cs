@@ -11,8 +11,9 @@
         public DateTime PublishedDate { get; set; }
         public string Author { get; set; }
         public bool IsVisible { get; set; }
+        public List<CategoryDto> Categories { get; set; }
 
-        public BlogPostDto(Guid id, string title, string shortDescription, string urlHandle, string content, string featureImageUrl, DateTime publishedDate, string author, bool isVisible)
+        public BlogPostDto(Guid id, string title, string shortDescription, string urlHandle, string content, string featureImageUrl, DateTime publishedDate, string author, bool isVisible, List<CategoryDto> categories)
         {
             Id = id;
             Title = title;
@@ -23,6 +24,7 @@
             PublishedDate = publishedDate;
             Author = author;
             IsVisible = isVisible;
+            Categories = categories;
         }
     }
 }

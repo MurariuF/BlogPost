@@ -5,5 +5,12 @@
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string UrlHandle { get; set; }
+
+        public CategoryDto(Guid id, string name, string urlHandle)
+        {
+            Id = id;
+            Name = name;
+            UrlHandle = urlHandle;
+        }
     }
 }
