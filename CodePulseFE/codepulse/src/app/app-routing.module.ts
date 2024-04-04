@@ -5,13 +5,15 @@ import { AddCategoryComponent } from './Features/Category/add-category/add-categ
 import { EditCategoryComponent } from './Features/Category/edit-category/edit-category.component';
 import { BlogpostsListComponent } from './Features/blog-post/blogposts-list/blogposts-list.component';
 import { AddBlogpostComponent } from './Features/blog-post/add-blogpost/add-blogpost.component';
+import { EditBlogpostComponent } from './Features/blog-post/edit-blogpost/edit-blogpost.component';
 
 const routes: Routes = [
   { path: 'admin/categories', component: CategoryListComponent },
   { path: 'admin/categories/add', component: AddCategoryComponent },
   { path: 'admin/categories/:id', component: EditCategoryComponent },
   { path: 'admin/blogposts', component: BlogpostsListComponent },
-  { path: 'admin/blogposts/add', component: AddBlogpostComponent }
+  { path: 'admin/blogposts/add', component: AddBlogpostComponent },
+  { path: 'admin/blogposts/:id', component: EditBlogpostComponent }
 ];
 
 @NgModule({
