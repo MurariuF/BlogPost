@@ -8,10 +8,12 @@ import { AddBlogpostComponent } from './Features/blog-post/add-blogpost/add-blog
 import { EditBlogpostComponent } from './Features/blog-post/edit-blogpost/edit-blogpost.component';
 import { HomeComponent } from './Features/public/home/home.component';
 import { BlogDetailsComponent } from './Features/public/blog-details/blog-details.component';
+import { LoginComponent } from './Features/auth/login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'blog/:url', component: BlogDetailsComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'admin/categories', component: CategoryListComponent },
   { path: 'admin/categories/add', component: AddCategoryComponent },
   { path: 'admin/categories/:id', component: EditCategoryComponent },
