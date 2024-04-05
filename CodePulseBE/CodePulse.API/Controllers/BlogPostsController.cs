@@ -1,4 +1,5 @@
-﻿using CodePulse.API.Models.Domain;
+﻿using Azure;
+using CodePulse.API.Models.Domain;
 using CodePulse.API.Models.DTO;
 using CodePulse.API.Repositories.Interface;
 using Microsoft.AspNetCore.Mvc;
@@ -91,6 +92,27 @@ namespace CodePulse.API.Controllers
 
             return Ok(responseDto);
         }
+
+        [HttpGet]
+        [Route("{urlHandle}")]
+        public async Task<IActionResult> GetBlogPostByUrlHandle([FromRoute] string urlHandle)
+        {
+            var response = await blogPostRepository.GetByUrlHandleAsync(urlHandle);
+
+            if (response is null)
+            {
+                return NotFound();
+            }
+
+            var responseDto = new BlogPostDto(response.Id, response.Title, response.ShortDescription,
+                response.UrlHandle,
+                response.Content, response.FeaturedImageUrl, response.PublishedDate, response.Author,
+                response.IsVisible,
+                response.Categories.Select(x => new CategoryDto(x.Id, x.Name, x.UrlHandle)).ToList());
+
+            return Ok(responseDto);
+        }
+    
 
         [HttpPut]
         [Route("{id:guid}")]
