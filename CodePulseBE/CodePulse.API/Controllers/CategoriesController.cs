@@ -35,12 +35,12 @@ namespace CodePulse.API.Controllers
 
             return Ok(response);
         }
-        // get: https://localhost:7014/api/Categories
 
+        // get: https://localhost:7014/api/Categories?query=html
         [HttpGet]
-        public async Task<IActionResult> GetAllCategories()
+        public async Task<IActionResult> GetAllCategories([FromQuery] string? query)
         {
-            var categories = await repository.GetAllAsync();
+            var categories = await repository.GetAllAsync(query);
             
             //map domain model to dto
             var response = new List<CategoryDto>();
@@ -55,7 +55,6 @@ namespace CodePulse.API.Controllers
 
         [HttpGet]
         [Route("{id:Guid}")]
-        [Authorize]
         public async Task<IActionResult> GetCategoryById([FromRoute]Guid id)
         {
             var category = await repository.GetCategoryByIdAsync(id);

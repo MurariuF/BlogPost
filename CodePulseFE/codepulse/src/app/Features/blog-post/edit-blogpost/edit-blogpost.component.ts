@@ -76,7 +76,7 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
         urlHandle: this.model.urlHandle,
         publishedDate: this.model.publishedDate,
         author: this.model.author,
-        isVisible: this.model.isVisible,
+        isVisible: false,
         categories: this.selectedCategories ?? []
       };
     }
