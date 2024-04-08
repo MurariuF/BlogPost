@@ -15,42 +15,46 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   id: string | null = null;
   paramsSubscription?: Subscription;
   editCategorySubscription?: Subscription;
-  editCategory?: Category;
+  category?: Category;
 
   constructor(private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private router: Router) {}
+    private router: Router) {
+  }
 
   ngOnInit(): void {
     this.paramsSubscription = this.route.paramMap.subscribe({
       next: (params) => {
         this.id = params.get('id');
 
-        if(this.id) {
+        if (this.id) {
+          // get the data from the API for this category Id
           this.categoryService.getCategoryById(this.id)
           .subscribe({
             next: (response) => {
-              this.editCategory = response;
+              this.category = response;
             }
           });
+
         }
       }
     });
   }
 
-  onFormSubmit(): void{
+  onFormSubmit(): void {
     const updateCategoryRequest: UpdateCategoryRequest = {
-      name: this.editCategory?.name ?? '',
-      urlHandle: this.editCategory?.urlHandle ?? ''
+      name: this.category?.name ?? '',
+      urlHandle: this.category?.urlHandle ?? ''
     };
 
-    if(this.id){
-    this.editCategorySubscription = this.categoryService.updateCategory(this.id!, updateCategoryRequest)
-    .subscribe({
-      next: (response) => {
-        this.router.navigateByUrl('/admin/categories');
-      }
-    });
+    // pass this object to service
+    if (this.id) {
+      this.editCategorySubscription = this.categoryService.updateCategory(this.id, updateCategoryRequest)
+      .subscribe({
+        next: (response) => {
+          this.router.navigateByUrl('/admin/categories');
+        }
+      });
     }
   }
 
