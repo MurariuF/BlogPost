@@ -38,11 +38,14 @@ namespace CodePulse.API.Controllers
 
         // get: https://localhost:7014/api/Categories?query=html&sortBy=name&sortDirection=asc
         [HttpGet]
-        public async Task<IActionResult> GetAllCategories([FromQuery] string? query,
+        public async Task<IActionResult> GetAllCategories(
+            [FromQuery] string? query,
             [FromQuery] string? sortBy,
-            [FromQuery] string? sortDirection)
+            [FromQuery] string? sortDirection,
+            [FromQuery] int? pageNumber,
+            [FromQuery] int? pageSize)
         {
-            var categories = await repository.GetAllAsync(query, sortBy, sortDirection);
+            var categories = await repository.GetAllAsync(query, sortBy, sortDirection, pageNumber, pageSize);
             
             //map domain model to dto
             var response = new List<CategoryDto>();
@@ -112,6 +115,16 @@ namespace CodePulse.API.Controllers
             var response = new CategoryDto(category.Id, category.Name, category.UrlHandle);
 
             return Ok(response);
+        }
+
+        //get: https://localhost:7014/api/categories/count
+        [HttpGet]
+        [Route("count")]
+        public async Task<IActionResult> GetCategoriesTotal()
+        {
+            var count = await repository.GetTotalCount();
+
+            return Ok(count);
         }
     }
 }
